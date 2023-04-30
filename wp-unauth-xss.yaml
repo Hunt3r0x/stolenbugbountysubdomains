@@ -2,7 +2,7 @@ id: wp-unauth-xss
 
 info:
   name: wp-unauth-xss
-  author: H1NTR0X01
+  author: H1NTR0X01,OSSAMAYASSERR
   severity: medium
   reference: 
   metadata:

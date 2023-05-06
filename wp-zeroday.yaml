@@ -1,0 +1,26 @@
+id: wp-rxss
+
+info:
+  name: wp-rxss
+  author: H1NTR0X01
+  severity: high
+  description: WordPress Plugin WPML Version < 4.6.1  reflected-xss
+  reference:
+  remediation: update WP to latest version
+  tags: xss,wp,wordpress
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/wp-login.php?wp_lang=en_US%27'
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: body
+        words:
+          - '#039;"='

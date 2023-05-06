@@ -4,7 +4,7 @@ info:
   name: wp-rxss
   author: H1NTR0X01
   severity: high
-  description: WordPress Plugin WPML Version < 4.6.1  reflected-xss
+  description: WordPress Plugin WPML Version < 4.6.1 reflected-xss
   reference:
   remediation: update WP to latest version
   tags: xss,wp,wordpress
